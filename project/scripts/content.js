@@ -913,6 +913,7 @@ Analyze this text and identify ALL instances of bias: ${text}`;
 
   // Add "Fix All" event listener
   shadow.getElementById("fixAll").addEventListener('click', () => {
+    shadow.getElementById('fixAll').disabled = true;
     for (let i = 0; i < originals.length; i++) {
       replaceWithRevision(i);
     }
