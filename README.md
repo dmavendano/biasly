@@ -39,6 +39,8 @@ git clone https://github.com/your-username/biasly.git
 cd biasly
 "Authorization": "Bearer YOUR_API_KEY_HERE"
 
+```bash
+
 ## 3. Load the Extension in Chrome
 
 1. Open Chrome and go to [`chrome://extensions/`](chrome://extensions/)
