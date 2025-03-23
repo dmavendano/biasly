@@ -367,6 +367,11 @@ Analyze this text and identify ALL instances of bias: ${text}`;
             document.body.appendChild(countDiv);
 
             highlightBiasInText(element, biasInstances);
+        } else {
+            const countDiv = document.createElement('div');
+            countDiv.className = 'bias-count';
+            countDiv.textContent = 'No bias found';
+            document.body.appendChild(countDiv);
         }
 
         displayResults();
