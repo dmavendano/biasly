@@ -1,0 +1,154 @@
+
+/* styles.css */
+
+
+
+.info-container {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+
+    color: white;
+    max-width: 65px;
+    width: 100%;
+    /* height: 100%; */
+    border-radius: 20px;
+    z-index: 10000;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+
+    overflow: hidden;
+    transition: all 0.1s;
+}
+
+.info-bg {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 350px;
+    width: 100%;
+    margin: 0;
+
+    position: relative;
+    z-index: 5;
+
+    background-color: rgba(20, 28, 45, 0.616);
+    box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25), inset 1px 1px 1px rgba(255, 255, 255, 0.10);
+    backdrop-filter: blur(37.5px);
+    -webkit-backdrop-filter: blur(37.5px);
+
+    border-radius: 32.5px;
+
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    letter-spacing: 0.5px;
+    color: #ffffff;
+}
+
+
+.RedCircle {
+    position: absolute;
+    width: 100px;
+    height: 76px;
+    right: 1px;
+    bottom: 1px;
+
+    border-radius: 50% 0 32.5px 0;
+    background: #ff1c1c;
+    opacity: 0.2;
+
+
+    animation-name: RedCircleAni;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes RedCircleAni {
+    0% {
+        height: 125px;
+    }
+
+    50% {
+        height: 200px;
+    }
+
+    100% {
+        height: 125px;
+    }
+}
+
+.PurpleCircle {
+    position: absolute;
+    width: 200px;
+    height: 61px;
+    bottom: 1px;
+
+    border-radius: 50% 50% 0 0;
+    background: #6a00ff;
+    opacity: 0.2;
+
+    animation-name: PurpleCircleAni;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes PurpleCircleAni {
+    0% {
+        left: 50px;
+    }
+
+    50% {
+        left: 10px;
+    }
+
+    100% {
+        left: 50px;
+    }
+}
+
+.BlueCircle {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    left: 1px;
+    top: 1px;
+
+    border-radius: 32.5px 50% 50% 50%;
+    background: #1a2dff;
+    opacity: 0.2;
+
+
+    animation-name: BlueCircleAni;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes BlueCircleAni {
+    0% {
+        height: 100px;
+        width: 150px;
+    }
+
+    25% {
+        height: 120px;
+        width: 150px;
+    }
+
+    50% {
+        height: 100px;
+        width: 150px;
+    }
+
+    75% {
+        height: 100px;
+        width: 200px;
+    }
+
+    100% {
+        height: 100px;
+        width: 150px;
+    }
+}

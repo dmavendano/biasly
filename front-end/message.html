@@ -1,0 +1,195 @@
+<!-- message.html -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gfirm.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Tiny5&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            letter-spacing: 0.5px;
+            color: #ffffff;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            max-width: 350px;
+            width: 100%;
+            margin: 0;
+
+            position: relative;
+            z-index: 5;
+
+            background-color: rgba(20, 28, 45, 0.616);
+            box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25), inset 1px 1px 1px rgba(255, 255, 255, 0.10);
+            backdrop-filter: blur(37.5px);
+            -webkit-backdrop-filter: blur(37.5px);
+
+            border-radius: 32.5px;
+        }
+
+        .box-header {
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            height: 65px;
+            background-color: rgba(26, 20, 45, 0.187);
+
+            border-radius: 32.5px 32.5px 0 0;
+            padding: 20px;
+
+
+        }
+
+        .text-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .total-bias-text {
+            font-size: 14px;
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .total-bias-subtext {
+            font-size: 10px;
+            font-weight: 500;
+
+            color: #dcdddf;
+        }
+
+        button {
+            position: absolute;
+            right: calc((65px - 40px)/2);
+            height: 40px;
+            width: 120px;
+            background-color: rgba(128, 70, 128, 0.584);
+            box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.119), inset 1px 1px 1px rgba(255, 255, 255, 0.208);
+
+            color: #fff;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: rgba(86, 48, 86, 0.584);
+        }
+
+
+        .passage {
+            display: flex;
+            position: relative;
+            width: 100%;
+            gap: 30px;
+            font-size: 14px;
+        }
+
+        .original-passage {
+            width: 50%;
+            font-style: italic;
+
+        }
+
+        .fixed-passage {
+            width: 50%;
+            font-weight: 500;
+
+        }
+
+        .vertical-gap {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 2.5px;
+            background-color: rgba(56, 31, 56, 0.432);
+            border-radius: 1.25px;
+        }
+
+        .explanation {
+            font-size: 12px;
+            margin-bottom: 40px;
+        }
+
+        .box-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            gap: 10px;
+
+            border-radius: 32.5px;
+            padding: 20px;
+            position: relative;
+        }
+
+        .fix-button {
+            position: absolute;
+            bottom: 10px;
+            height: 40px;
+            width: calc( 100% - ((65px - 40px)));
+
+            color: #fff;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="box-header">
+            <div class="text-container">
+                <div class="total-bias-text">10000 biased passages</div>
+                <div class="total-bias-subtext">select a highlighted passage</div>
+            </div><button>fix all </button>
+        </div>
+        <div class="box-text">
+            <div class="passage">
+                <p class="original-passage">
+                    These are, when I looked at those showrooms burning and those cars — not one or two, like seven,
+                    eight, ten, burning, exploding all over the place — these are terrorists.
+                </p>
+                <div class="vertical-gap">
+                </div>
+                <p class="fixed-passage">
+                    When I saw the damage to the showrooms and vehicles — several of them burned — I believe these acts
+                    should be treated seriously and potentially as criminal extremism.
+                </p>
+
+            </div>
+            <p class="explanation">
+                Trump’s repetition and exaggeration (“exploding all over the place”) combined with labeling (“these are
+                terrorists”) uses emotionally evocative language to heighten fear and outrage. It paints a vivid and
+                potentially exaggerated image to stir emotion.
+            </p>
+
+            <button class="fix-button">
+                replace passage
+            </button>
+        </div>
+    </div>
+</body>
+
+</html>
