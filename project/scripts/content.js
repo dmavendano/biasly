@@ -710,9 +710,8 @@ if (element) {
 
   }
 
-
-  async function detectBias(text) {
-    const prompt = `Analyze the following text for biased language and political bias. Pay special attention to:
+async function detectBias(text) {
+  const prompt = `Analyze the following text for biased language and political bias. Pay special attention to:
 
 1. Political bias indicators:
    - Loaded terms about politicians or political actions
@@ -735,56 +734,65 @@ For EACH instance of bias found, you MUST respond in EXACTLY this format, no quo
 [Explanation] Explain why this specific text shows bias
 [Neutral Revision] Provide an unbiased version
 
-Multiple in one sentence should be divided into seperate instances, with only the EXACT PORTION of the sentence containing the bias being included in the [Original] section.
+Multiple in one sentence should be divided into separate instances, with only the EXACT PORTION of the sentence containing the bias being included in the [Original] section.
 
 Specific word choice works best for corrections. Many short corrections are better than fewer long ones.
 
-also start your response with a [Reasoning] section to plan out your response. the reasoning should end with a "i need to remember to not add quotation marks around any of my instances" Write [response] to start your response.
+Also start your response with a [Reasoning] section to plan out your response. The reasoning should end with these exact words: 
+"
+I need to remember to not add "" (quotation marks) around any of my instances, so instead of: "far-left extremists" I should write: far left extremists
+" 
+
+Then in the reasoning write:
+"
+I also need to remember that if I am flagging a quote as biased, I need to include entire quote. Here is every quote in the article. If I include any of the following I need to remember to include all of it:
+" 
+then include a list of every quoted statement from the article
+
+Write [Response] to start your response.
 
 Example response format:
-[Original] In a late-night power grab, the politician stripped authority //NOTICE NO STARTING OR ENDING QUOTATION MARKS//
+[Original] In a late-night power grab, the politician stripped authority
 [Explanation] "Late-night power grab" implies suspicious timing and negative intent without evidence
-[Neutral Revision] The politician issued an order modifying authority //AGAIN NO QUOTATION MARKS//
+[Neutral Revision] The politician issued an order modifying authority
 
-If it is a direct quote that contains biased language, include the whole quote (including the quotation marks on the ends of it) and everything you need to turn it into a paraphrase. ALWAYS include why it's biased to use an exact quote in the [Explanation] section, rather then a more neutral paraphrase. In the revision, you can paraphrase the quote while ensuring that your revision works as a drop in substitution.
+INSTRUCTIONS IF YOU ARE PULLING FROM A DIRECT QUOTE IN THE ARTICLE:
+If it is a direct quote, include the ENTIRE quote (including the quotation marks on the ends of it). In the [Explanation] section, include something along The use of a direct quote include why it's biased that the news website used an exact quote, rather then a more neutral paraphrase. In the revision, you should paraphrase the quote while ensuring that your revision works as a drop-in substitution. 
 
-except for quotes of a person (due to necessity), the shorter the passage the better. 4 words is the idea length
+Except for quotes of a person (due to needing to include the whole quote), the shorter the passage the better. 4 WORDS is the ideal length.
 
 Analyze this text and identify ALL instances of bias: ${text}`;
 
-    console.log("Sending request to GPT-4o with prompt:", prompt); // 👈 ADD HERE
+  console.log("Sending request to Gemini 2.0 Flash with prompt:", prompt);
 
-    try {
-      const response = await fetch("https://api.openai.com/v1/chat/completions", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": "Bearer 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"
-        },
-        body: JSON.stringify({
-          model: "gpt-4o",
+  try {
+    const response = await fetch("https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyBJ5d7tAYDQAAUBYLLONu0j5S6xOBTtnoM", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        contents: [{
+          parts: [{ text: prompt }]
+        }]
+      })
+    });
 
-          messages: [{
-            role: "user",
-            content: prompt
-          }],
-          max_tokens: 2000,
-          temperature: 0.3
-        })
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-
-      const data = await response.json();
-      console.log("Raw analysis from GPT-4o:", data.choices[0].message.content); // 🔍 INSPECT THIS
-      return data.choices[0].message.content;
-
-    } catch (error) {
-      return "Error detecting bias.";
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
     }
+
+    const data = await response.json();
+    const result = data.candidates?.[0]?.content?.parts?.[0]?.text ?? "No response from Gemini.";
+    console.log("Raw analysis from Gemini:", result);
+    return result;
+
+  } catch (error) {
+    console.error("Error from Gemini:", error);
+    return "Error detecting bias.";
   }
+}
+
 
   function displayResults() {
     const resultsDiv = document.createElement('div');
