@@ -33,14 +33,13 @@ Using OpenAI’s ChatGPT, Biasly analyzes the content you read, highlights biase
 ## 🚀 Getting Started
 
 ### 1. Clone the Repository
-
 git clone https://github.com/your-username/biasly.git
 cd biasly
+
+### 2. Add your API key
 "Authorization": "Bearer YOUR_API_KEY_HERE"
 
-
-
-## 3. Load the Extension in Chrome
+### 3. Load the Extension in Chrome
 
 1. Open Chrome and go to [`chrome://extensions/`](chrome://extensions/)
 2. Enable **Developer mode** in the top right corner
