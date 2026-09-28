@@ -1,3 +1,5 @@
+![Biasly](cover.jpg)
+
 # 🧠 Biasly – AI-Powered Bias Detection for Online Articles
 
 **Biasly** is a Chrome extension that helps users uncover and neutralize biased language in online articles.  
